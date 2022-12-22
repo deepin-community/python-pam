@@ -1,0 +1,14 @@
+#!/usr/bin/make -f
+
+export PYBUILD_DESTDIR_python3=debian/python3-pam/
+
+%:
+	dh $@ --with python3 --buildsystem=pybuild
+
+override_dh_clean:
+	rm -rf build
+	rm -rf *.egg-info
+	dh_clean
+
+override_dh_installdocs:
+	dh_installdocs AUTHORS README
